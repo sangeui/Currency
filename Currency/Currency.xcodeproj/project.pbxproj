@@ -56,15 +56,63 @@
 		4F818D4A25B83C9C0058417D /* Currency */ = {
 			isa = PBXGroup;
 			children = (
+				4F818D6425B83EB80058417D /* Resource */,
+				4F818D6625B83EFC0058417D /* Storyboard */,
+				4F818D6025B83E990058417D /* View */,
+				4F818D6325B83EA60058417D /* Model */,
+				4F818D6225B83EA20058417D /* Service */,
+				4F818D6125B83E9E0058417D /* ViewModel */,
 				4F818D4B25B83C9C0058417D /* AppDelegate.swift */,
 				4F818D4D25B83C9C0058417D /* SceneDelegate.swift */,
-				4F818D4F25B83C9C0058417D /* ViewController.swift */,
-				4F818D5125B83C9C0058417D /* Main.storyboard */,
-				4F818D5425B83C9E0058417D /* Assets.xcassets */,
-				4F818D5625B83C9E0058417D /* LaunchScreen.storyboard */,
-				4F818D5925B83C9E0058417D /* Info.plist */,
 			);
 			path = Currency;
+			sourceTree = "<group>";
+		};
+		4F818D6025B83E990058417D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4F818D4F25B83C9C0058417D /* ViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4F818D6125B83E9E0058417D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4F818D6225B83EA20058417D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		4F818D6325B83EA60058417D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4F818D6425B83EB80058417D /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				4F818D5925B83C9E0058417D /* Info.plist */,
+				4F818D5425B83C9E0058417D /* Assets.xcassets */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		4F818D6625B83EFC0058417D /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				4F818D5625B83C9E0058417D /* LaunchScreen.storyboard */,
+				4F818D5125B83C9C0058417D /* Main.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,7 +336,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2JXBLEGTYV;
-				INFOPLIST_FILE = Currency/Info.plist;
+				INFOPLIST_FILE = Currency/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,7 +355,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2JXBLEGTYV;
-				INFOPLIST_FILE = Currency/Info.plist;
+				INFOPLIST_FILE = Currency/Resource/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
