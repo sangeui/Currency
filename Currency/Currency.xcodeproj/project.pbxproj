@@ -13,7 +13,18 @@
 		4F818D5325B83C9C0058417D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F818D5125B83C9C0058417D /* Main.storyboard */; };
 		4F818D5525B83C9E0058417D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F818D5425B83C9E0058417D /* Assets.xcassets */; };
 		4F818D5825B83C9E0058417D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F818D5625B83C9E0058417D /* LaunchScreen.storyboard */; };
+		4F818D6E25B83FBE0058417D /* CurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818D6D25B83FBE0058417D /* CurrencyTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4F818D7025B83FBE0058417D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F818D4025B83C9C0058417D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F818D4725B83C9C0058417D;
+			remoteInfo = Currency;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4F818D4825B83C9C0058417D /* Currency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Currency.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,10 +35,20 @@
 		4F818D5425B83C9E0058417D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F818D5725B83C9E0058417D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F818D5925B83C9E0058417D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F818D6B25B83FBE0058417D /* CurrencyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F818D6D25B83FBE0058417D /* CurrencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTests.swift; sourceTree = "<group>"; };
+		4F818D6F25B83FBE0058417D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		4F818D4525B83C9C0058417D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F818D6825B83FBE0058417D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -41,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				4F818D4A25B83C9C0058417D /* Currency */,
+				4F818D6C25B83FBE0058417D /* CurrencyTests */,
 				4F818D4925B83C9C0058417D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				4F818D4825B83C9C0058417D /* Currency.app */,
+				4F818D6B25B83FBE0058417D /* CurrencyTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,6 +138,15 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
+		4F818D6C25B83FBE0058417D /* CurrencyTests */ = {
+			isa = PBXGroup;
+			children = (
+				4F818D6D25B83FBE0058417D /* CurrencyTests.swift */,
+				4F818D6F25B83FBE0058417D /* Info.plist */,
+			);
+			path = CurrencyTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +167,24 @@
 			productReference = 4F818D4825B83C9C0058417D /* Currency.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4F818D6A25B83FBE0058417D /* CurrencyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F818D7225B83FBE0058417D /* Build configuration list for PBXNativeTarget "CurrencyTests" */;
+			buildPhases = (
+				4F818D6725B83FBE0058417D /* Sources */,
+				4F818D6825B83FBE0058417D /* Frameworks */,
+				4F818D6925B83FBE0058417D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F818D7125B83FBE0058417D /* PBXTargetDependency */,
+			);
+			name = CurrencyTests;
+			productName = CurrencyTests;
+			productReference = 4F818D6B25B83FBE0058417D /* CurrencyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -146,6 +196,10 @@
 				TargetAttributes = {
 					4F818D4725B83C9C0058417D = {
 						CreatedOnToolsVersion = 12.3;
+					};
+					4F818D6A25B83FBE0058417D = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 4F818D4725B83C9C0058417D;
 					};
 				};
 			};
@@ -163,6 +217,7 @@
 			projectRoot = "";
 			targets = (
 				4F818D4725B83C9C0058417D /* Currency */,
+				4F818D6A25B83FBE0058417D /* CurrencyTests */,
 			);
 		};
 /* End PBXProject section */
@@ -175,6 +230,13 @@
 				4F818D5825B83C9E0058417D /* LaunchScreen.storyboard in Resources */,
 				4F818D5525B83C9E0058417D /* Assets.xcassets in Resources */,
 				4F818D5325B83C9C0058417D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F818D6925B83FBE0058417D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,7 +253,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4F818D6725B83FBE0058417D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F818D6E25B83FBE0058417D /* CurrencyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4F818D7125B83FBE0058417D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F818D4725B83C9C0058417D /* Currency */;
+			targetProxy = 4F818D7025B83FBE0058417D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4F818D5125B83C9C0058417D /* Main.storyboard */ = {
@@ -367,6 +445,46 @@
 			};
 			name = Release;
 		};
+		4F818D7325B83FBE0058417D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2JXBLEGTYV;
+				INFOPLIST_FILE = CurrencyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = sangeui.CurrencyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Currency.app/Currency";
+			};
+			name = Debug;
+		};
+		4F818D7425B83FBE0058417D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2JXBLEGTYV;
+				INFOPLIST_FILE = CurrencyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = sangeui.CurrencyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Currency.app/Currency";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -384,6 +502,15 @@
 			buildConfigurations = (
 				4F818D5D25B83C9E0058417D /* Debug */,
 				4F818D5E25B83C9E0058417D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F818D7225B83FBE0058417D /* Build configuration list for PBXNativeTarget "CurrencyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F818D7325B83FBE0058417D /* Debug */,
+				4F818D7425B83FBE0058417D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
