@@ -19,6 +19,7 @@
 		4F818D8425B841340058417D /* CurrentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818D8325B841340058417D /* CurrentViewModelTests.swift */; };
 		4F818D8825B841570058417D /* MockSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818D8725B841570058417D /* MockSession.swift */; };
 		4F818D8C25B8415E0058417D /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818D8B25B8415E0058417D /* MockData.swift */; };
+		4F818D9025B861DF0058417D /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818D8F25B861DF0058417D /* CurrencyService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		4F818D8325B841340058417D /* CurrentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentViewModelTests.swift; sourceTree = "<group>"; };
 		4F818D8725B841570058417D /* MockSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSession.swift; sourceTree = "<group>"; };
 		4F818D8B25B8415E0058417D /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		4F818D8F25B861DF0058417D /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 		4F818D6225B83EA20058417D /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				4F818D8F25B861DF0058417D /* CurrencyService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F818D9025B861DF0058417D /* CurrencyService.swift in Sources */,
 				4F818D5025B83C9C0058417D /* ViewController.swift in Sources */,
 				4F818D4C25B83C9C0058417D /* AppDelegate.swift in Sources */,
 				4F818D4E25B83C9C0058417D /* SceneDelegate.swift in Sources */,

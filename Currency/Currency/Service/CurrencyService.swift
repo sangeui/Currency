@@ -8,7 +8,7 @@
 import Foundation
 
 class CurrencyService {
-    private var session: URLSession
+    var session: URLSession
     
     init(session: URLSession) {
         self.session = session
