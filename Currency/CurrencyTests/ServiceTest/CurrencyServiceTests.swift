@@ -16,4 +16,24 @@ class CurrencyServiceTests: XCTestCase {
         
         XCTAssertNotNil(service.session)
     }
+    
+    func testCurrencyService_whenRequested_isSuccess() {
+        
+        let expectation = XCTestExpectation()
+        
+        let session = MockSession()
+        session.populateData()
+        session.populateResponse()
+        
+        let service = CurrencyService(session: session)
+        
+        service.request { (response: URLResponse) in
+            guard let httpResponse = response as? HTTPURLResponse else {
+                return
+            }
+            
+        }
+        
+        wait(for: <#T##[XCTestExpectation]#>, timeout: <#T##TimeInterval#>)
+    }
 }

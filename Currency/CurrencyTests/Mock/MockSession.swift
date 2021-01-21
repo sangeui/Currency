@@ -27,6 +27,27 @@ class MockSession: URLSession {
     }
 }
 
+extension MockSession {
+    func populateData() {
+        let path = Bundle(for: MockSession.self).path(forResource: "MockData", ofType: "json")!
+        let data = try! Data(contentsOf: URL(fileURLWithPath: path))
+        self.data = data
+    }
+    func populateResponse() {
+        let urlString = """
+http://apilayer.net/api/live?
+access_key=APIKEY
+currencies=KRW,JPY,PHP&
+source=USD&
+format=1
+"""
+        let url = URL(string: urlString)!
+        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        
+        self.response = response
+    }
+}
+
 class MockDataTask: URLSessionDataTask {
     private let completion: () -> Void
     
