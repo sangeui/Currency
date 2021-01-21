@@ -47,6 +47,15 @@ class CurrencyServiceTests: XCTestCase {
     }
     
     func testCurrencyService_whenRequested_isCorrectURL() {
+        let session = MockSession()
+        let service = CurrencyService(session: session)
         
+        service.request(endpoint: endpoint, queries: queries) { result in
+            switch result {
+            case .failure(.invalidURL(_)):
+                XCTAssert(false)
+            default: XCTAssert(true)
+            }
+        }
     }
 }
