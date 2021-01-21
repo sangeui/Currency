@@ -21,6 +21,7 @@
 		4F818D9025B861DF0058417D /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818D8F25B861DF0058417D /* CurrencyService.swift */; };
 		4F818D9425B957C00058417D /* MockData.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F818D9325B957C00058417D /* MockData.json */; };
 		4F818D9C25B96E500058417D /* CurrencyServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818D9B25B96E4F0058417D /* CurrencyServiceError.swift */; };
+		4F818DA025B96F7E0058417D /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818D9F25B96F7E0058417D /* Currency.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		4F818D8F25B861DF0058417D /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 		4F818D9325B957C00058417D /* MockData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockData.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		4F818D9B25B96E4F0058417D /* CurrencyServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyServiceError.swift; sourceTree = "<group>"; };
+		4F818D9F25B96F7E0058417D /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 		4F818D6325B83EA60058417D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				4F818D9F25B96F7E0058417D /* Currency.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F818DA025B96F7E0058417D /* Currency.swift in Sources */,
 				4F818D9025B861DF0058417D /* CurrencyService.swift in Sources */,
 				4F818D5025B83C9C0058417D /* ViewController.swift in Sources */,
 				4F818D9C25B96E500058417D /* CurrencyServiceError.swift in Sources */,
