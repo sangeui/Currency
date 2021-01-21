@@ -7,10 +7,16 @@
 
 import Foundation
 
+typealias CurrencyCompletion  = (Result<Currency, CurrencyServiceError>) -> Void
+
 class CurrencyService {
     var session: URLSession
     
     init(session: URLSession) {
         self.session = session
+    }
+    
+    func request(endpoint: String, queries: [String: String], completion: @escaping CurrencyCompletion) {
+        
     }
 }
