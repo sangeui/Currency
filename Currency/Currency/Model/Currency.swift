@@ -11,7 +11,7 @@ struct Currency {
     var success: Bool
     var timestamp: Int64
     var source: String
-    var destinations: [String: String]
+    var destinations: [String: Double]
     
     enum CodingKeys: String, CodingKey {
         case success,
