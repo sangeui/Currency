@@ -7,5 +7,19 @@
 
 import Foundation
 
-struct Currency {}
+struct Currency {
+    var success: Bool
+    var timestamp: Int64
+    var source: String
+    var destinations: [String: String]
+    
+    enum CodingKeys: String, CodingKey {
+        case success,
+             timestamp,
+             source
+        
+        case destinations = "quotes"
+    }
+}
+
 extension Currency: Decodable {}
