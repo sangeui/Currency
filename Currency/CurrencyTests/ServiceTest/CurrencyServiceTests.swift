@@ -25,27 +25,6 @@ class CurrencyServiceTests: XCTestCase {
         XCTAssertNotNil(service.session)
     }
     
-    func testCurrencyService_whenRequested_isSuccess() {
-        
-//        let expectation = XCTestExpectation()
-//
-//        let session = MockSession()
-//        session.populateData()
-//        session.populateResponse()
-//
-//        let service = CurrencyService(session: session)
-//
-//        service.request(endpoint: endpoint, queries: queries) {
-//            result in
-//            switch result {
-//            case .success(let currency): return
-//            case .failure(let error): return
-//            }
-//        }
-//
-//        wait(for: [expectation], timeout: 10)
-    }
-    
     func testCurrencyService_whenRequested_isCorrectURL() {
         let session = MockSession()
         let service = CurrencyService(session: session)
@@ -57,5 +36,28 @@ class CurrencyServiceTests: XCTestCase {
             default: XCTAssert(true)
             }
         }
+    }
+    
+    func testCurrencyService_whenRequested_isSuccess() {
+        
+        let expectation = XCTestExpectation()
+
+        let session = MockSession()
+        session.populateData()
+        session.populateResponse()
+
+        let service = CurrencyService(session: session)
+
+        service.request(endpoint: endpoint, queries: queries) {
+            result in
+            switch result {
+            case .success(let currency):
+                print(currency)
+                expectation.fulfill()
+            case .failure(_): XCTAssert(false)
+            }
+        }
+
+        wait(for: [expectation], timeout: 10)
     }
 }
