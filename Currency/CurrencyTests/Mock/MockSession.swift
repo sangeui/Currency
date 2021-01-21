@@ -7,10 +7,14 @@
 
 import Foundation
 
+enum MockError: Error {
+    case any
+}
+
 class MockSession: URLSession {
-    private var data: Data?
-    private var error: Error?
-    private var response: HTTPURLResponse?
+    var data: Data?
+    var error: Error?
+    var response: HTTPURLResponse?
     
     init(data: Data? = nil, error: Error? = nil, response: HTTPURLResponse? = nil) {
         self.data = data
