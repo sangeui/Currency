@@ -18,23 +18,44 @@ class CurrencyService {
     
     func request(endpoint: String, queries: [String: String], completion: @escaping CurrencyCompletion) {
         
-        guard let url = URL(string: endpoint) else {
-            completion(.failure(.invalidURL(endpoint)))
-            return
+        guard let url = makeQueriedURL(endpoint, queries, completion) else { return }
+    }
+}
+
+private extension CurrencyService {
+    func makeQueriedURL(_ urlString: String, _ queries: [String: String], _ completion: @escaping CurrencyCompletion) -> URL? {
+        guard let url = url(urlString, completion) else { return nil }
+        
+        guard var urlComponents = urlComponents(url, completion) else { return nil }
+        
+        urlComponents.queryItems = queryItems(queries)
+        
+        guard let urlQueried = urlComponents.url else {
+            completion(.failure(.invalidURL(urlString)))
+            return nil
         }
         
-        guard var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
-            completion(.failure(.invalidURL(endpoint)))
-            return
+        return urlQueried
+    }
+    func url(_ string: String, _ completion: @escaping CurrencyCompletion) -> URL? {
+        guard let url = URL(string: string) else {
+            completion(.failure(.invalidURL(string)))
+            return nil
         }
         
-        let queries = queries.compactMap({ URLQueryItem(name: $0.key, value: $0.value) })
-        
-        urlComponents.queryItems = queries
-        
-        guard let urlSuccessed = urlComponents.url else {
-            completion(.failure(.invalidURL(endpoint)))
-            return
+        return url
+    }
+    
+    func urlComponents(_ url: URL, _ completion: @escaping CurrencyCompletion) -> URLComponents? {
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
+            completion(.failure(.invalidURL(url.absoluteString)))
+            return nil
         }
+        
+        return components
+    }
+    
+    func queryItems(_ queries: [String: String]) -> [URLQueryItem] {
+        return queries.compactMap({ URLQueryItem(name: $0.key, value: $0.value) })
     }
 }
