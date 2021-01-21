@@ -13,7 +13,7 @@ class CurrencyServiceTests: XCTestCase {
     let endpoint = "http://apilayer.net/api/live"
     let queries = [
         "access_key": "",
-        "currencies": "KRW, PHP, JPY",
+        "currencies": "KRW,PHP,JPY",
         "source": "USD",
         "format": "1"
     ]
