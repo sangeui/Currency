@@ -8,5 +8,8 @@
 import Foundation
 
 enum CurrencyServiceError {
-    
+    case invalidURL(String)
+    case invalidData
+    case networkError(Error)
+    case httpStatusCode(Int)
 }
