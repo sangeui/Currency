@@ -44,6 +44,9 @@ extension MockSession {
         
         self.response = response
     }
+    func populateError() {
+        self.error = MockError.any
+    }
 }
 
 class MockDataTask: URLSessionDataTask {
