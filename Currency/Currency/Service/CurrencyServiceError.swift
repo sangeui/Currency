@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CurrencyServiceError {
+enum CurrencyServiceError: Error {
     case invalidURL(String)
     case invalidData
     case networkError(Error)
