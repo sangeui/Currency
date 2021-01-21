@@ -10,7 +10,8 @@ import Foundation
 typealias CurrencyCompletion  = (Result<Currency, CurrencyServiceError>) -> Void
 
 class CurrencyService {
-    var session: URLSession
+    private(set) var session: URLSession
+    private let jsonDecoder = JSONDecoder()
     
     init(session: URLSession) {
         self.session = session
@@ -18,10 +19,39 @@ class CurrencyService {
     
     func request(endpoint: String, queries: [String: String], completion: @escaping CurrencyCompletion) {
         
-        guard let url = makeQueriedURL(endpoint, queries, completion) else { return }
+        guard let url = makeQueriedURL(endpoint, queries, completion)
+        else { return }
+        
+        let request = makeURLRequest(url)
+        
+        session.dataTask(with: request) { [weak self] (data, response, error) in
+            
+            guard let self = self else { return }
+            
+            guard let data = data else { return }
+            
+            guard let currency = self.jsonDecode(Currency.self, from: data)
+            else { return }
+            
+            completion(.success(currency))
+        }.resume()
     }
 }
-
+// MARK: - JSONDecoder
+private extension CurrencyService {
+    func jsonDecode<T: Decodable>(_ type: T.Type, from data: Data) -> T? {
+        return try? jsonDecoder.decode(type, from: data)
+    }
+}
+// MARK: - URLRequest
+private extension CurrencyService {
+    func makeURLRequest(_ url: URL) -> URLRequest {
+        let request = URLRequest(url: url)
+        
+        return request
+    }
+}
+// MARK: - URL
 private extension CurrencyService {
     func makeQueriedURL(_ urlString: String, _ queries: [String: String], _ completion: @escaping CurrencyCompletion) -> URL? {
         guard let url = url(urlString, completion) else { return nil }
