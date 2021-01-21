@@ -8,3 +8,4 @@
 import Foundation
 
 struct Currency {}
+extension Currency: Decodable {}
