@@ -60,7 +60,7 @@ class CurrencyServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 10)
     }
     
-    func testCurrencyService_whenRequestedFailed_isNetworkErrorPassed() {
+    func testCurrencyService_whenRequestFailed_isNetworkErrorPassed() {
         let expectation = XCTestExpectation()
         
         let session = MockSession()
