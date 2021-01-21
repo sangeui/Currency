@@ -28,6 +28,11 @@ class CurrencyService {
             
             guard let self = self else { return }
             
+            if let error = error {
+                completion(.failure(.networkError(error)))
+                return
+            }
+            
             guard let data = data else { return }
             
             guard let currency = self.jsonDecode(Currency.self, from: data)
