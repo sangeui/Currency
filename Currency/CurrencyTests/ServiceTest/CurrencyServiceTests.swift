@@ -10,6 +10,8 @@ import XCTest
 
 class CurrencyServiceTests: XCTestCase {
     
+    var sut: CurrencyService!
+    
     let endpoint = "http://apilayer.net/api/live"
     let queries = [
         "access_key": "",
@@ -18,21 +20,25 @@ class CurrencyServiceTests: XCTestCase {
         "format": "1"
     ]
     
+    override func setUp() {
+        prepareCurrencyService()
+    }
+    
+    override func tearDown() {
+        sut = nil
+    }
+    
     func testCurrencyService_whenInitialized_isInjectedSession() {
-        let session = MockSession()
-        let service = CurrencyService(session: session)
         
-        XCTAssertNotNil(service.session)
+        XCTAssertNotNil(sut.session)
+        
     }
     
     func testCurrencyService_whenRequested_isCorrectURL() {
-        let session = MockSession()
-        let service = CurrencyService(session: session)
         
-        service.request(endpoint: endpoint, queries: queries) { result in
+        sut.request(endpoint: endpoint, queries: queries) { result in
             switch result {
-            case .failure(.invalidURL(_)):
-                XCTAssert(false)
+            case .failure(.invalidURL(_)): XCTAssert(false)
             default: XCTAssert(true)
             }
         }
@@ -51,13 +57,19 @@ class CurrencyServiceTests: XCTestCase {
         service.request(endpoint: endpoint, queries: queries) {
             result in
             switch result {
-            case .success(let currency):
-                print(currency)
-                expectation.fulfill()
+            case .success(_): expectation.fulfill()
             case .failure(_): XCTAssert(false)
             }
         }
 
         wait(for: [expectation], timeout: 10)
+    }
+}
+private extension CurrencyServiceTests {
+    func prepareCurrencyService() {
+        let session = MockSession()
+        let service = CurrencyService(session: session)
+        
+        sut = service
     }
 }
