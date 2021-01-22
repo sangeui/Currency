@@ -14,6 +14,7 @@ class CurrencyViewModel {
     var list: [String:String] {
         let list = CurrencyList.allCases
             .filter({ $0.code != source })
+            .filter({ $0.code != destination})
             .reduce(into: [String: String]()) { $0[$1.code] = $1.description }
             
         return list
@@ -44,10 +45,10 @@ extension CurrencyList {
     
     var description: String {
         switch self {
-        case .usd: return "미국(USD)"
-        case .krw: return "한국(KRW)"
-        case .jpy: return "일본(JPY)"
-        case .php: return "필리핀(PHP)"
+        case .usd: return "미국 (USD)"
+        case .krw: return "한국 (KRW)"
+        case .jpy: return "일본 (JPY)"
+        case .php: return "필리핀 (PHP)"
         }
     }
 }
