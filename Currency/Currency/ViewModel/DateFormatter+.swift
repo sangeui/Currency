@@ -13,4 +13,9 @@ extension DateFormatter {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         return dateFormatter
     }
+    
+    func string(from timeIntervalSince1970: TimeInterval) -> String {
+        let date = Date(timeIntervalSince1970: timeIntervalSince1970)
+        return self.string(from: date)
+    }
 }
