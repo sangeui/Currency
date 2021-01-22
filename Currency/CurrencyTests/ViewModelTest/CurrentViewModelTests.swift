@@ -14,5 +14,7 @@ class CurrentViewModelTests: XCTestCase {
     
     func testCurrentViewModel_whenInitialized_isInDefaultSource() {
         let viewModel = CurrencyViewModel()
+        
+        XCTAssertEqual(viewModel.source, source)
     }
 }
