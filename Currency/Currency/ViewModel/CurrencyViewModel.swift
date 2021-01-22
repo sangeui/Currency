@@ -9,4 +9,8 @@ import Foundation
 
 class CurrencyViewModel {
     var source = "USD"
+    
+    func changeSource(to target: String) {
+        self.source = target
+    }
 }

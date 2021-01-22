@@ -17,4 +17,12 @@ class CurrentViewModelTests: XCTestCase {
         
         XCTAssertEqual(viewModel.source, source)
     }
+    
+    func testCurrencyViewModel_whenChangedSource_isSuccessed() {
+        let viewModel = CurrencyViewModel()
+        
+        viewModel.changeSource(to: "KRW")
+        
+        XCTAssertEqual(viewModel.source, "KRW")
+    }
 }
