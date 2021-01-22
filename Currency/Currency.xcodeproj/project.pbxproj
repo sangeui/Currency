@@ -15,7 +15,7 @@
 		4F818D5825B83C9E0058417D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F818D5625B83C9E0058417D /* LaunchScreen.storyboard */; };
 		4F818D6E25B83FBE0058417D /* CurrencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818D6D25B83FBE0058417D /* CurrencyTests.swift */; };
 		4F818D7C25B8410A0058417D /* CurrencyServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818D7B25B8410A0058417D /* CurrencyServiceTests.swift */; };
-		4F818D8025B8411F0058417D /* FormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818D7F25B8411F0058417D /* FormatterTests.swift */; };
+		4F818D8025B8411F0058417D /* DateFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818D7F25B8411F0058417D /* DateFormatterTests.swift */; };
 		4F818D8425B841340058417D /* CurrentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818D8325B841340058417D /* CurrentViewModelTests.swift */; };
 		4F818D8825B841570058417D /* MockSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818D8725B841570058417D /* MockSession.swift */; };
 		4F818D9025B861DF0058417D /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818D8F25B861DF0058417D /* CurrencyService.swift */; };
@@ -47,7 +47,7 @@
 		4F818D6D25B83FBE0058417D /* CurrencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTests.swift; sourceTree = "<group>"; };
 		4F818D6F25B83FBE0058417D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F818D7B25B8410A0058417D /* CurrencyServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyServiceTests.swift; sourceTree = "<group>"; };
-		4F818D7F25B8411F0058417D /* FormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterTests.swift; sourceTree = "<group>"; };
+		4F818D7F25B8411F0058417D /* DateFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterTests.swift; sourceTree = "<group>"; };
 		4F818D8325B841340058417D /* CurrentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentViewModelTests.swift; sourceTree = "<group>"; };
 		4F818D8725B841570058417D /* MockSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSession.swift; sourceTree = "<group>"; };
 		4F818D8F25B861DF0058417D /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
@@ -189,7 +189,7 @@
 		4F818D7925B840C90058417D /* FormatterTest */ = {
 			isa = PBXGroup;
 			children = (
-				4F818D7F25B8411F0058417D /* FormatterTests.swift */,
+				4F818D7F25B8411F0058417D /* DateFormatterTests.swift */,
 			);
 			path = FormatterTest;
 			sourceTree = "<group>";
@@ -319,7 +319,7 @@
 			files = (
 				4F818D8425B841340058417D /* CurrentViewModelTests.swift in Sources */,
 				4F818D8825B841570058417D /* MockSession.swift in Sources */,
-				4F818D8025B8411F0058417D /* FormatterTests.swift in Sources */,
+				4F818D8025B8411F0058417D /* DateFormatterTests.swift in Sources */,
 				4F818D7C25B8410A0058417D /* CurrencyServiceTests.swift in Sources */,
 				4F818D6E25B83FBE0058417D /* CurrencyTests.swift in Sources */,
 			);
