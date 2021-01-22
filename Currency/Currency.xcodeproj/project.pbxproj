@@ -22,6 +22,7 @@
 		4F818D9425B957C00058417D /* MockData.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F818D9325B957C00058417D /* MockData.json */; };
 		4F818D9C25B96E500058417D /* CurrencyServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818D9B25B96E4F0058417D /* CurrencyServiceError.swift */; };
 		4F818DA025B96F7E0058417D /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818D9F25B96F7E0058417D /* Currency.swift */; };
+		4F818DA625BAA5790058417D /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818DA525BAA5790058417D /* DateFormatter+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		4F818D9325B957C00058417D /* MockData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockData.json; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.json; };
 		4F818D9B25B96E4F0058417D /* CurrencyServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyServiceError.swift; sourceTree = "<group>"; };
 		4F818D9F25B96F7E0058417D /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		4F818DA525BAA5790058417D /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,14 +97,14 @@
 		4F818D4A25B83C9C0058417D /* Currency */ = {
 			isa = PBXGroup;
 			children = (
+				4F818D4B25B83C9C0058417D /* AppDelegate.swift */,
+				4F818D4D25B83C9C0058417D /* SceneDelegate.swift */,
 				4F818D6425B83EB80058417D /* Resource */,
 				4F818D6625B83EFC0058417D /* Storyboard */,
 				4F818D6025B83E990058417D /* View */,
 				4F818D6325B83EA60058417D /* Model */,
 				4F818D6225B83EA20058417D /* Service */,
 				4F818D6125B83E9E0058417D /* ViewModel */,
-				4F818D4B25B83C9C0058417D /* AppDelegate.swift */,
-				4F818D4D25B83C9C0058417D /* SceneDelegate.swift */,
 			);
 			path = Currency;
 			sourceTree = "<group>";
@@ -118,6 +120,7 @@
 		4F818D6125B83E9E0058417D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4F818DA525BAA5790058417D /* DateFormatter+.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				4F818DA025B96F7E0058417D /* Currency.swift in Sources */,
 				4F818D9025B861DF0058417D /* CurrencyService.swift in Sources */,
 				4F818D5025B83C9C0058417D /* ViewController.swift in Sources */,
+				4F818DA625BAA5790058417D /* DateFormatter+.swift in Sources */,
 				4F818D9C25B96E500058417D /* CurrencyServiceError.swift in Sources */,
 				4F818D4C25B83C9C0058417D /* AppDelegate.swift in Sources */,
 				4F818D4E25B83C9C0058417D /* SceneDelegate.swift in Sources */,
