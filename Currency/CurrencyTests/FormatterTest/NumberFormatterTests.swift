@@ -17,9 +17,8 @@ class NumberFormatterTests: XCTestCase {
     
     func testNumberFormatter_whenFormatted_isSuccessed() {
         let inAnotherCurrency = remittance * exchangeRate
-        let nsNumber = NSNumber(value: inAnotherCurrency)
         let formatter = NumberFormatter.currencyFormatter
-        let formatted = formatter.string(from: nsNumber)
+        let formatted = formatter.string(from: inAnotherCurrency)
         
         XCTAssertNotNil(formatted)
         XCTAssertEqual(formatted!, target)
