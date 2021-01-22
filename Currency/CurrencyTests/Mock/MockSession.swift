@@ -37,10 +37,10 @@ extension MockSession {
         let data = try! Data(contentsOf: URL(fileURLWithPath: path))
         self.data = data
     }
-    func populateResponse() {
+    func populateResponse(statusCode: Int) {
         let urlString = "http://apilayer.net/api/live?access_key=APIKEYcurrencies=KRW,JPY,PHP&source=USD&format=1"
         let url = URL(string: urlString)!
-        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)
+        let response = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: nil, headerFields: nil)
         
         self.response = response
     }

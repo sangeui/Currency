@@ -33,6 +33,15 @@ class CurrencyService {
                 return
             }
             
+            if let response = response as? HTTPURLResponse {
+                let statusCode = response.statusCode
+                switch statusCode {
+                case 400..<600: completion(.failure(.httpStatusCode(statusCode)))
+                    return
+                default: break
+                }
+            }
+            
             guard let data = data else { return }
             
             guard let currency = self.jsonDecode(Currency.self, from: data)

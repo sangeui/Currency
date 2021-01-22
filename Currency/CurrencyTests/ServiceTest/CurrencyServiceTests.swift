@@ -46,7 +46,7 @@ class CurrencyServiceTests: XCTestCase {
 
         let session = MockSession()
         session.populateData()
-        session.populateResponse()
+        session.populateResponse(statusCode: 200)
 
         let service = CurrencyService(session: session)
 
@@ -80,6 +80,21 @@ class CurrencyServiceTests: XCTestCase {
     
     func testCurrencyService_whenRequestFailed_isStatusCodePassed() {
         
+        let expectation = XCTestExpectation()
+        
+        let session = MockSession()
+        session.populateResponse(statusCode: 404)
+        
+        let service = CurrencyService(session: session)
+        
+        service.request(endpoint: endpoint, queries: queries) { result in
+            switch result {
+            case .failure(.httpStatusCode(_)): expectation.fulfill()
+            default: return
+            }
+        }
+        
+        wait(for: [expectation], timeout: 10)
     }
 }
 private extension CurrencyServiceTests {
