@@ -23,6 +23,7 @@
 		4F818D9C25B96E500058417D /* CurrencyServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818D9B25B96E4F0058417D /* CurrencyServiceError.swift */; };
 		4F818DA025B96F7E0058417D /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818D9F25B96F7E0058417D /* Currency.swift */; };
 		4F818DA625BAA5790058417D /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818DA525BAA5790058417D /* DateFormatter+.swift */; };
+		4F818DAE25BAAF130058417D /* NumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818DAD25BAAF130058417D /* NumberFormatterTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		4F818D9B25B96E4F0058417D /* CurrencyServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyServiceError.swift; sourceTree = "<group>"; };
 		4F818D9F25B96F7E0058417D /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		4F818DA525BAA5790058417D /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
+		4F818DAD25BAAF130058417D /* NumberFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				4F818D7F25B8411F0058417D /* DateFormatterTests.swift */,
+				4F818DAD25BAAF130058417D /* NumberFormatterTests.swift */,
 			);
 			path = FormatterTest;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F818D8425B841340058417D /* CurrentViewModelTests.swift in Sources */,
+				4F818DAE25BAAF130058417D /* NumberFormatterTests.swift in Sources */,
 				4F818D8825B841570058417D /* MockSession.swift in Sources */,
 				4F818D8025B8411F0058417D /* DateFormatterTests.swift in Sources */,
 				4F818D7C25B8410A0058417D /* CurrencyServiceTests.swift in Sources */,
