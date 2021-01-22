@@ -77,6 +77,10 @@ class CurrencyServiceTests: XCTestCase {
         
         wait(for: [expectation], timeout: 10)
     }
+    
+    func testCurrencyService_whenRequestFailed_isStatusCodePassed() {
+        
+    }
 }
 private extension CurrencyServiceTests {
     func prepareCurrencyService() {
