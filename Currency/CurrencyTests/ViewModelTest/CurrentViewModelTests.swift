@@ -6,6 +6,13 @@
 //
 
 import XCTest
+@testable import Currency
 
 class CurrentViewModelTests: XCTestCase {
+    let source = "USD"
+    let target = ""
+    
+    func testCurrentViewModel_whenInitialized_isInDefaultSource() {
+        let viewModel = CurrencyViewModel()
+    }
 }
