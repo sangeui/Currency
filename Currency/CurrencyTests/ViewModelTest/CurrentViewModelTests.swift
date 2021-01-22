@@ -21,11 +21,22 @@ class CurrentViewModelTests: XCTestCase {
     var sut: CurrencyViewModel!
     
     override func setUp() {
-        sut = CurrencyViewModel()
+        let session = MockSession()
+        let service = CurrencyService(session: session)
+        sut = CurrencyViewModel(service: service)
     }
     
     override func tearDown() {
         sut = nil
+    }
+    
+    func testCurrencyViewModel_whenInitialized_isInjectedService() {
+        let session = MockSession()
+        let service = CurrencyService(session: session)
+        
+        let viewModel = CurrencyViewModel(service: service)
+        
+        XCTAssertTrue(service === viewModel.service)
     }
     
     func testCurrentViewModel_whenInitialized_isInDefaultSrcDst() {
@@ -44,10 +55,8 @@ class CurrentViewModelTests: XCTestCase {
     }
     
     func testCurrencyViewModel_whenSentCurrencyList() {
-        let viewModel = CurrencyViewModel()
-        
         let targetList = list
-        let receivedList = viewModel.list
+        let receivedList = sut.list
         
         XCTAssertEqual(targetList, receivedList)
     }

@@ -19,6 +19,12 @@ class CurrencyViewModel {
         return list
     }
     
+    var service: CurrencyService
+    
+    init(service: CurrencyService) {
+        self.service = service
+    }
+    
     func changeSource(to target: String) {
         self.source = target
     }
