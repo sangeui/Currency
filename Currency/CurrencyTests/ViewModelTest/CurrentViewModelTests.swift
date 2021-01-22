@@ -12,7 +12,7 @@ class CurrentViewModelTests: XCTestCase {
     let source = "USD"
     let target = ""
     
-    func testCurrentViewModel_whenInitialized_isInDefaultSource() {
+    func testCurrentViewModel_whenInitialized_isInDefaultSrcDst() {
         let viewModel = CurrencyViewModel()
         
         XCTAssertEqual(viewModel.source, source)
@@ -24,5 +24,13 @@ class CurrentViewModelTests: XCTestCase {
         viewModel.changeSource(to: "KRW")
         
         XCTAssertEqual(viewModel.source, "KRW")
+    }
+    
+    func testCurrencyViewModel_whenChangedDestination_isSuccessed() {
+        let viewModel = CurrencyViewModel()
+        
+        viewModel.changeDestination(to: "KRW")
+        
+        XCTAssertEqual(viewModel.destination, "KRW")
     }
 }
