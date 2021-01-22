@@ -25,6 +25,7 @@
 		4F818DA625BAA5790058417D /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818DA525BAA5790058417D /* DateFormatter+.swift */; };
 		4F818DAE25BAAF130058417D /* NumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818DAD25BAAF130058417D /* NumberFormatterTests.swift */; };
 		4F818DB225BAB2360058417D /* NumberFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818DB125BAB2360058417D /* NumberFormatter+.swift */; };
+		4F818DB625BABD780058417D /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818DB525BABD780058417D /* CurrencyViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		4F818DA525BAA5790058417D /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
 		4F818DAD25BAAF130058417D /* NumberFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterTests.swift; sourceTree = "<group>"; };
 		4F818DB125BAB2360058417D /* NumberFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+.swift"; sourceTree = "<group>"; };
+		4F818DB525BABD780058417D /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 		4F818D6125B83E9E0058417D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				4F818DB525BABD780058417D /* CurrencyViewModel.swift */,
 				4F818DA525BAA5790058417D /* DateFormatter+.swift */,
 				4F818DB125BAB2360058417D /* NumberFormatter+.swift */,
 			);
@@ -320,6 +323,7 @@
 				4F818DA625BAA5790058417D /* DateFormatter+.swift in Sources */,
 				4F818D9C25B96E500058417D /* CurrencyServiceError.swift in Sources */,
 				4F818D4C25B83C9C0058417D /* AppDelegate.swift in Sources */,
+				4F818DB625BABD780058417D /* CurrencyViewModel.swift in Sources */,
 				4F818D4E25B83C9C0058417D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
