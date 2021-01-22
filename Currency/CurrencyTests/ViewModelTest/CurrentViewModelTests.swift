@@ -12,26 +12,43 @@ class CurrentViewModelTests: XCTestCase {
     let source = "USD"
     let destination = "KRW"
     
+    let list = [
+        "KRW": "한국(KRW)",
+        "JPY": "일본(JPY)",
+        "PHP": "필리핀(PHP)"
+    ]
+    
+    var sut: CurrencyViewModel!
+    
+    override func setUp() {
+        sut = CurrencyViewModel()
+    }
+    
+    override func tearDown() {
+        sut = nil
+    }
+    
     func testCurrentViewModel_whenInitialized_isInDefaultSrcDst() {
-        let viewModel = CurrencyViewModel()
-        
-        XCTAssertEqual(viewModel.source, source)
-        XCTAssertEqual(viewModel.destination, destination)
+        XCTAssertEqual(sut.source, source)
+        XCTAssertEqual(sut.destination, destination)
     }
     
     func testCurrencyViewModel_whenChangedSource_isSuccessed() {
-        let viewModel = CurrencyViewModel()
-        
-        viewModel.changeSource(to: "KRW")
-        
-        XCTAssertEqual(viewModel.source, "KRW")
+        sut.changeSource(to: "KRW")
+        XCTAssertEqual(sut.source, "KRW")
     }
     
     func testCurrencyViewModel_whenChangedDestination_isSuccessed() {
+        sut.changeDestination(to: "JPY")
+        XCTAssertEqual(sut.destination, "JPY")
+    }
+    
+    func testCurrencyViewModel_whenSentCurrencyList() {
         let viewModel = CurrencyViewModel()
         
-        viewModel.changeDestination(to: "KRW")
+        let targetList = list
+        let receivedList = viewModel.list
         
-        XCTAssertEqual(viewModel.destination, "KRW")
+        XCTAssertEqual(targetList, receivedList)
     }
 }
