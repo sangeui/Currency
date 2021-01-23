@@ -63,8 +63,11 @@ class CurrencyViewModelTests: XCTestCase {
     
     func testCurrencyViewModel_whenEnteredNumber_isSuccessed() {
         sut.currencyRate = 900.056691
+        let target = 90005.67
         
-//        sut.enterAmount(100)
+        let result = sut.calculate(100)!.rounded()
+        
+        XCTAssertEqual(result, target.rounded())
     }
     
 //    func testCurrencyViewModel_whenRequestedCurrencyRate_isSuccessed() {

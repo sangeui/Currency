@@ -50,7 +50,6 @@ class CurrencyViewModel {
         self.source = target
     }
     
-    
     /// 수취 국가를 변경한다
     ///
     /// CurrencyViewDelegate의 currencyViewModel(didChangeDestination:description:)을 호출한다
@@ -61,6 +60,12 @@ class CurrencyViewModel {
         let description = CurrencyList(rawValue: target.lowercased())!.description
         
         delegate?.currencyViewModel(didChangeDestination: target, description: description)
+    }
+    
+    func calculate(_ amount: Double) -> Double? {
+        guard let rate = currencyRate else { return nil }
+        
+        return amount * rate
     }
     
     /// 현재 설정된 송금 및 수취 국가에 대한 환율을 요청한다
