@@ -9,7 +9,7 @@ import Foundation
 
 protocol CurrencyViewModelDelegate: class {
     func currencyViewModel(didChangeDestination destination: String, description: String)
-    func currencyViewModel(didChangeCurrencyList list: [String])
+    func currencyViewModel(didChangeCurrencyList list: [String:String])
     func currencyViewModel(didReceiveCurrency currency: [String:String])
     func currencyViewModel(didReceiveError error: String)
 }
@@ -32,7 +32,9 @@ class CurrencyViewModel {
     
     var service: CurrencyService
     
-    weak var delegate: CurrencyViewModelDelegate?
+    weak var delegate: CurrencyViewModelDelegate? {
+        didSet { delegate?.currencyViewModel(didChangeCurrencyList: list) }
+    }
     
     let numberFormatter = NumberFormatter.currencyFormatter
     let dateFormatter = DateFormatter.currencyFormatter
@@ -45,11 +47,24 @@ class CurrencyViewModel {
         self.source = target
     }
     
+    
+    /// 수취 국가를 변경한다
+    ///
+    /// CurrencyViewDelegate의 currencyViewModel(didChangeDestination:description:)을 호출한다
+    /// - Parameter target: 변경할 수취 국가의 코드
     func changeDestination(to target: String) {
-        self.destination = target
+        destination = target
+        
+        let description = CurrencyList(rawValue: target.lowercased())!.description
+        
+        delegate?.currencyViewModel(didChangeDestination: target, description: description)
     }
     
-    func currencyRate(completion: @escaping ([String:String]?, String?) -> Void) {
+    /// 현재 설정된 송금 및 수취 국가에 대한 환율을 요청한다
+    ///
+    /// 요청이 성공하면 `CurrencyViewDelegate`의 `currencyViewModel(didReceiveCurrency:)`를 호출하고
+    /// 실패하면 `currencyViewModel(didReceiveError:)`를 호출한다
+    func requestCurrencyRate() {
         let queries = [
             "access_key": "bae9d0e6ce4a4b885835497c7fe8f2f2",
             "source": source,
@@ -67,17 +82,9 @@ class CurrencyViewModel {
                 // 예시: USDKRW
                 let rateKey = self.source + self.destination
                 
-                guard let rate = currency.destinations[rateKey]
-                else {
-                    completion(nil, "환율 정보를 가져올 수 없습니다")
-                    return
-                }
-
-                guard let formattedRate = self.numberFormatter.string(from: rate)
-                else {
-                    completion(nil, "환율 정보를 가져올 수 없습니다")
-                    return
-                }
+                guard let rate = currency.destinations[rateKey],
+                      let formattedRate = self.numberFormatter.string(from: rate)
+                else { self.delegate?.currencyViewModel(didReceiveError: "ERROR"); return }
                                 
                 let description = "\(formattedRate) \(self.destination) / \(self.source)"
                 
@@ -88,10 +95,10 @@ class CurrencyViewModel {
                     "time": time
                 ]
                 
-                completion(result, nil)
+                self.delegate?.currencyViewModel(didReceiveCurrency: result)
 
             case .failure(_):
-                completion(nil, "오류가 발생했습니다")
+                self.delegate?.currencyViewModel(didReceiveError: "ERROR")
             }
         }
     }
