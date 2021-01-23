@@ -9,7 +9,7 @@ import Foundation
 
 struct Currency {
     var success: Bool
-    var timestamp: Int64
+    var timestamp: Double
     var source: String
     var destinations: [String: Double]
     
