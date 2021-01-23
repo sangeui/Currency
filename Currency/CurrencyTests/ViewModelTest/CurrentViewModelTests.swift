@@ -67,20 +67,31 @@ class CurrentViewModelTests: XCTestCase {
         
         session.populateData()
         
-        sut.currencyRate { (success: [String:String]?, error: String?) in
+        sut.currencyRate { success, error in
             
             guard let success = success else { return }
             
-            guard let description = success["description"] else { return }
+            guard let _ = success["description"] else { return }
             
-            guard let time = success["time"] else { return }
-            
-            print(description)
-            print(time)
-            
+            guard let _ = success["time"] else { return }
+
             expectation.fulfill()
             
         }
+        
+        wait(for: [expectation], timeout: 10)
+    }
+    
+    func testCurrencyViewModel_whenRequestedCurrencyRate_isFailed() {
+        let expectation = XCTestExpectation()
+        
+        session.populateError()
+        
+        sut.currencyRate(completion: { success, error in
+            if let _ = error {
+                expectation.fulfill()
+            }
+        })
         
         wait(for: [expectation], timeout: 10)
     }
