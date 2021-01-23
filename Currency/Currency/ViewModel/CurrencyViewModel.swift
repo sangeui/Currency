@@ -12,7 +12,7 @@ protocol CurrencyViewModelDelegate: class {
     func currencyViewModel(didChangeCurrencyList list: [String:String])
     func currencyViewModel(didReceiveCurrency currency: [String:String])
     func currencyViewModel(didReceiveError error: String)
-    func currencyViewModel(didCalculate result: String)
+    func currencyViewModel(didCalculate result: String, isSuccessed: Bool)
 }
 
 class CurrencyViewModel {
@@ -86,7 +86,7 @@ class CurrencyViewModel {
         
         let description = "수취금액은 \(formatted) \(destination) 입니다"
         
-        delegate?.currencyViewModel(didCalculate: description)
+        delegate?.currencyViewModel(didCalculate: description, isSuccessed: true)
         
         return result
     }
