@@ -11,6 +11,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var currencyPickerView: UIPickerView!
     @IBOutlet weak var sendToLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var rateLabel: UILabel!
     
     var orderedList: [(key: String, value: String)]!
     var viewModel: CurrencyViewModel!
@@ -20,11 +22,12 @@ class ViewController: UIViewController {
         
         let service = CurrencyService(session: .shared)
         viewModel = CurrencyViewModel(service: service)
-
-        self.orderedList = viewModel.list.sorted(by: >)
         
         currencyPickerView.delegate = self
         currencyPickerView.dataSource = self
+        
+        viewModel.delegate = self
+        
     }
 
     @IBAction func showPickerView(_ sender: Any) {
@@ -49,15 +52,35 @@ extension ViewController: UIPickerViewDataSource {
 extension ViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let code = orderedList[row].key
-        let description = orderedList[row].value
         
         viewModel.changeDestination(to: code)
-        sendToLabel.text = description
-        
-        orderedList = viewModel.list.sorted(by: >)
         
         pickerView.isHidden = true
         pickerView.selectRow(0, inComponent: 0, animated: false)
-        pickerView.reloadComponent(0)
+        
+        viewModel.requestCurrencyRate()
     }
+}
+
+extension ViewController: CurrencyViewModelDelegate {
+    func currencyViewModel(didChangeDestination destination: String, description: String) {
+        self.sendToLabel.text = description
+    }
+    
+    func currencyViewModel(didChangeCurrencyList list: [String:String]) {
+        orderedList = list.sorted(by: >)
+        currencyPickerView.reloadAllComponents()
+    }
+    
+    func currencyViewModel(didReceiveCurrency currency: [String : String]) {
+        DispatchQueue.main.async {
+            self.timeLabel.text = currency["time"]!
+            self.rateLabel.text = currency["description"]!
+        }
+    }
+    
+    func currencyViewModel(didReceiveError error: String) {
+        
+    }
+
 }
