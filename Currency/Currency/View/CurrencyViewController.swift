@@ -90,6 +90,7 @@ extension CurrencyViewController: UITextFieldDelegate {
 extension CurrencyViewController: CurrencyViewModelDelegate {
     func currencyViewModel(didChangeDestination destination: String, description: String) {
         self.sendToLabel.text = description
+        self.descriptionLabel.text = "송금액을 입력하세요"
     }
     
     func currencyViewModel(didChangeCurrencyList list: [String:String]) {
@@ -101,6 +102,12 @@ extension CurrencyViewController: CurrencyViewModelDelegate {
         DispatchQueue.main.async {
             self.timeLabel.text = currency["time"]!
             self.rateLabel.text = currency["description"]!
+            
+            if let text = self.amountTextField.text,
+               let amount = Double(text),
+               amount > 0 {
+                self.viewModel.calculate(amount)
+            }
         }
     }
     
@@ -108,8 +115,12 @@ extension CurrencyViewController: CurrencyViewModelDelegate {
         
     }
     
-    func currencyViewModel(didCalculate result: String) {
-        descriptionLabel.text = result
+    func currencyViewModel(didCalculate result: String, isSuccessed: Bool) {
+        if isSuccessed {
+            descriptionLabel.text = result
+        } else {
+            
+        }
     }
 
 }
