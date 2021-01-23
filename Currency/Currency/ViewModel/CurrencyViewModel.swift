@@ -33,7 +33,10 @@ class CurrencyViewModel {
     var service: CurrencyService
     
     weak var delegate: CurrencyViewModelDelegate? {
-        didSet { delegate?.currencyViewModel(didChangeCurrencyList: list) }
+        didSet {
+            self.requestCurrencyRate()
+            delegate?.currencyViewModel(didChangeCurrencyList: list)
+        }
     }
     
     let numberFormatter = NumberFormatter.currencyFormatter
