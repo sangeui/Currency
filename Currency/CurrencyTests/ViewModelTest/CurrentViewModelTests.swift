@@ -13,15 +13,15 @@ class CurrentViewModelTests: XCTestCase {
     let destination = "KRW"
     
     let list = [
-        "KRW": "한국(KRW)",
-        "JPY": "일본(JPY)",
-        "PHP": "필리핀(PHP)"
+        "JPY": "일본 (JPY)",
+        "PHP": "필리핀 (PHP)"
     ]
     
     var sut: CurrencyViewModel!
+    var session: MockSession!
     
     override func setUp() {
-        let session = MockSession()
+        session = MockSession()
         let service = CurrencyService(session: session)
         sut = CurrencyViewModel(service: service)
     }
@@ -59,5 +59,29 @@ class CurrentViewModelTests: XCTestCase {
         let receivedList = sut.list
         
         XCTAssertEqual(targetList, receivedList)
+    }
+    
+    func testCurrencyViewModel_whenRequestedCurrencyRate_isSuccessed() {
+        
+        let expectation = XCTestExpectation()
+        
+        session.populateData()
+        
+        sut.currencyRate { (success: [String:String]?, error: String?) in
+            
+            guard let success = success else { return }
+            
+            guard let description = success["description"] else { return }
+            
+            guard let time = success["time"] else { return }
+            
+            print(description)
+            print(time)
+            
+            expectation.fulfill()
+            
+        }
+        
+        wait(for: [expectation], timeout: 10)
     }
 }
