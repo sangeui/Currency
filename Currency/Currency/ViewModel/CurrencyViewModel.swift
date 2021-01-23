@@ -12,6 +12,7 @@ protocol CurrencyViewModelDelegate: class {
     func currencyViewModel(didChangeCurrencyList list: [String:String])
     func currencyViewModel(didReceiveCurrency currency: [String:String])
     func currencyViewModel(didReceiveError error: String)
+    func currencyViewModel(didCalculate result: String)
 }
 
 class CurrencyViewModel {
@@ -34,7 +35,7 @@ class CurrencyViewModel {
     
     weak var delegate: CurrencyViewModelDelegate? {
         didSet {
-            self.requestCurrencyRate()
+//            self.requestCurrencyRate()
             delegate?.currencyViewModel(didChangeCurrencyList: list)
         }
     }
@@ -60,12 +61,36 @@ class CurrencyViewModel {
         let description = CurrencyList(rawValue: target.lowercased())!.description
         
         delegate?.currencyViewModel(didChangeDestination: target, description: description)
+        delegate?.currencyViewModel(didChangeCurrencyList: list)
     }
     
+    
+    /// 전달 받은 `amount` 값으로 환율을 계산한다
+    ///
+    /// `CurrencyViewDelegate`의 `currencyViewModel(didCalculate:)`을 호출한다
+    /// 이때 해당 메소드로는 완성된 문자열 값이 전달된다
+    ///
+    /// - warning: 가능한 `amount`의 범위는 0에서 10000으로 제한된다
+    /// - Parameter amount: 계산하고자 하는 숫자 값
+    /// - Returns: 계산된 환율
+    @discardableResult
     func calculate(_ amount: Double) -> Double? {
         guard let rate = currencyRate else { return nil }
         
-        return amount * rate
+        guard amount <= 10000 else { return nil }
+        
+        guard amount >= 0 else { return nil }
+        
+        let result = rate * amount
+        
+        guard let formatted = numberFormatter.string(from: result)
+        else { return nil }
+        
+        let description = "수취금액은 \(formatted) \(destination) 입니다"
+        
+        delegate?.currencyViewModel(didCalculate: description)
+        
+        return result
     }
     
     /// 현재 설정된 송금 및 수취 국가에 대한 환율을 요청한다
