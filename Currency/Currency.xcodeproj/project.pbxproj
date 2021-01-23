@@ -86,6 +86,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F62A41D25BC83B7006266CA /* Formatter */ = {
+			isa = PBXGroup;
+			children = (
+				4F818DA525BAA5790058417D /* DateFormatter+.swift */,
+				4F818DB125BAB2360058417D /* NumberFormatter+.swift */,
+			);
+			path = Formatter;
+			sourceTree = "<group>";
+		};
 		4F818D3F25B83C9C0058417D = {
 			isa = PBXGroup;
 			children = (
@@ -133,8 +142,7 @@
 				4F62A41525BC46D1006266CA /* CurrencyList.swift */,
 				4F818DB525BABD780058417D /* CurrencyViewModel.swift */,
 				4F62A41925BC8017006266CA /* CurrencyViewModelDelegate.swift */,
-				4F818DA525BAA5790058417D /* DateFormatter+.swift */,
-				4F818DB125BAB2360058417D /* NumberFormatter+.swift */,
+				4F62A41D25BC83B7006266CA /* Formatter */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
