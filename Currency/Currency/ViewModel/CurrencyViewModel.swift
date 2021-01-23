@@ -7,9 +7,17 @@
 
 import Foundation
 
+protocol CurrencyViewModelDelegate: class {
+    func currencyViewModel(didChangeDestination destination: String, description: String)
+    func currencyViewModel(didChangeCurrencyList list: [String])
+    func currencyViewModel(didReceiveCurrency currency: [String:String])
+    func currencyViewModel(didReceiveError error: String)
+}
+
 class CurrencyViewModel {
     var source = "USD"
     var destination = "KRW"
+    var currencyRate: Double?
     
     var list: [String: String] {
         let list = CurrencyList.allCases
@@ -23,6 +31,8 @@ class CurrencyViewModel {
     }
     
     var service: CurrencyService
+    
+    weak var delegate: CurrencyViewModelDelegate?
     
     let numberFormatter = NumberFormatter.currencyFormatter
     let dateFormatter = DateFormatter.currencyFormatter
@@ -41,7 +51,7 @@ class CurrencyViewModel {
     
     func currencyRate(completion: @escaping ([String:String]?, String?) -> Void) {
         let queries = [
-            "access_key": "",
+            "access_key": "bae9d0e6ce4a4b885835497c7fe8f2f2",
             "source": source,
             "currencies": destination,
             "format": "1"
@@ -58,10 +68,16 @@ class CurrencyViewModel {
                 let rateKey = self.source + self.destination
                 
                 guard let rate = currency.destinations[rateKey]
-                else { print("❌ 수취 국가 환율 오류"); return }
+                else {
+                    completion(nil, "환율 정보를 가져올 수 없습니다")
+                    return
+                }
 
                 guard let formattedRate = self.numberFormatter.string(from: rate)
-                else { print("❌ 환율 변환 오류"); return }
+                else {
+                    completion(nil, "환율 정보를 가져올 수 없습니다")
+                    return
+                }
                                 
                 let description = "\(formattedRate) \(self.destination) / \(self.source)"
                 
@@ -74,7 +90,8 @@ class CurrencyViewModel {
                 
                 completion(result, nil)
 
-            case .failure(let error): print(error.localizedDescription)
+            case .failure(_):
+                completion(nil, "오류가 발생했습니다")
             }
         }
     }
