@@ -61,38 +61,38 @@ class CurrentViewModelTests: XCTestCase {
         XCTAssertEqual(targetList, receivedList)
     }
     
-    func testCurrencyViewModel_whenRequestedCurrencyRate_isSuccessed() {
-        
-        let expectation = XCTestExpectation()
-        
-        session.populateData()
-        
-        sut.currencyRate { success, error in
-            
-            guard let success = success else { return }
-            
-            guard let _ = success["description"] else { return }
-            
-            guard let _ = success["time"] else { return }
-
-            expectation.fulfill()
-            
-        }
-        
-        wait(for: [expectation], timeout: 10)
-    }
-    
-    func testCurrencyViewModel_whenRequestedCurrencyRate_isFailed() {
-        let expectation = XCTestExpectation()
-        
-        session.populateError()
-        
-        sut.currencyRate(completion: { success, error in
-            if let _ = error {
-                expectation.fulfill()
-            }
-        })
-        
-        wait(for: [expectation], timeout: 10)
-    }
+//    func testCurrencyViewModel_whenRequestedCurrencyRate_isSuccessed() {
+//
+//        let expectation = XCTestExpectation()
+//
+//        session.populateData()
+//
+//        sut.currencyRate { success, error in
+//
+//            guard let success = success else { return }
+//
+//            guard let _ = success["description"] else { return }
+//
+//            guard let _ = success["time"] else { return }
+//
+//            expectation.fulfill()
+//
+//        }
+//
+//        wait(for: [expectation], timeout: 10)
+//    }
+//
+//    func testCurrencyViewModel_whenRequestedCurrencyRate_isFailed() {
+//        let expectation = XCTestExpectation()
+//
+//        session.populateError()
+//
+//        sut.currencyRate(completion: { success, error in
+//            if let _ = error {
+//                expectation.fulfill()
+//            }
+//        })
+//
+//        wait(for: [expectation], timeout: 10)
+//    }
 }
