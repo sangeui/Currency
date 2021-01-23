@@ -12,7 +12,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var currencyPickerView: UIPickerView!
     @IBOutlet weak var sendToLabel: UILabel!
     
-    var list: [String: String]!
     var orderedList: [(key: String, value: String)]!
     var viewModel: CurrencyViewModel!
     
@@ -21,8 +20,7 @@ class ViewController: UIViewController {
         
         let service = CurrencyService(session: .shared)
         viewModel = CurrencyViewModel(service: service)
-        
-        self.list = viewModel.list
+
         self.orderedList = viewModel.list.sorted(by: >)
         
         currencyPickerView.delegate = self
@@ -50,7 +48,16 @@ extension ViewController: UIPickerViewDataSource {
 
 extension ViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        sendToLabel.text = orderedList[row].value
+        let code = orderedList[row].key
+        let description = orderedList[row].value
+        
+        viewModel.changeDestination(to: code)
+        sendToLabel.text = description
+        
+        orderedList = viewModel.list.sorted(by: >)
+        
         pickerView.isHidden = true
+        pickerView.selectRow(0, inComponent: 0, animated: false)
+        pickerView.reloadComponent(0)
     }
 }
