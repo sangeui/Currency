@@ -85,6 +85,8 @@ class CurrencyViewModel {
                 guard let rate = currency.destinations[rateKey],
                       let formattedRate = self.numberFormatter.string(from: rate)
                 else { self.delegate?.currencyViewModel(didReceiveError: "ERROR"); return }
+                
+                self.currencyRate = rate
                                 
                 let description = "\(formattedRate) \(self.destination) / \(self.source)"
                 
