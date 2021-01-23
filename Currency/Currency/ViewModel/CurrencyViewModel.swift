@@ -77,9 +77,7 @@ class CurrencyViewModel {
     func calculate(_ amount: Double) -> Double? {
         guard let rate = currencyRate else { return nil }
         
-        guard amount <= 10000 else { return nil }
-        
-        guard amount >= 0 else { return nil }
+        guard 0...10000 ~= amount else { return nil }
         
         let result = rate * amount
         
