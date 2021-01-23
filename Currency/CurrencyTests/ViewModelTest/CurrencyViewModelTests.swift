@@ -70,6 +70,15 @@ class CurrencyViewModelTests: XCTestCase {
         XCTAssertEqual(result, target.rounded())
     }
     
+    func testCurrencyViewModel_whenEnteredNumber_isFailed() {
+        sut.currencyRate = 1
+        let greaterThanMaximum = sut.calculate(100001)
+        let lessThanMinimum = sut.calculate(-1)
+        
+        XCTAssertNil(greaterThanMaximum)
+        XCTAssertNil(lessThanMinimum)
+    }
+    
 //    func testCurrencyViewModel_whenRequestedCurrencyRate_isSuccessed() {
 //
 //        let expectation = XCTestExpectation()
