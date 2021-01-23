@@ -25,7 +25,7 @@
 
 # 구성
 
-![Currency%201e572324a51d41af8fc66c7099d48382/Untitled.png](Currency%201e572324a51d41af8fc66c7099d48382/Untitled.png)
+![Currency](https://user-images.githubusercontent.com/34618339/105607289-41ece100-5de1-11eb-97ac-5a8766098e3d.png)
 
 - 🖼 **CurrencyViewController**
 
