@@ -17,7 +17,7 @@ class CurrencyService {
         self.session = session
     }
     
-    func request(endpoint: String = "http://apilayer.net/api/live", queries: [String: String], completion: @escaping CurrencyCompletion) {
+    func request(endpoint: String, queries: [String: String], completion: @escaping CurrencyCompletion) {
         
         guard let url = makeQueriedURL(endpoint, queries, completion)
         else { return }
