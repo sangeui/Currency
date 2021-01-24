@@ -8,22 +8,24 @@
 import Foundation
 
 class CurrencyViewModel {
-    var source = "USD"
-    var destination = "KRW"
-    var currencyRate: Double?
+    private var source = "USD"
+    private var destination = "KRW"
+    private var currencyRate: Double?
     
-    var list: [String: String] {
+    private var list: [String: String] {
         let list = CurrencyList.allCases
             .filter({ $0.code != source })
             .filter({ $0.code != destination})
             .reduce(into: [String: String]()) {
                 $0[$1.code] = $1.description
             }
-            
         return list
     }
     
-    var service: CurrencyService
+    private let numberFormatter = NumberFormatter.currencyFormatter
+    private let dateFormatter = DateFormatter.currencyFormatter
+    
+    private var service: CurrencyService
     
     weak var delegate: CurrencyViewModelDelegate? {
         didSet {
@@ -31,9 +33,6 @@ class CurrencyViewModel {
             delegate?.currencyViewModel(didChangeCurrencyList: list)
         }
     }
-    
-    let numberFormatter = NumberFormatter.currencyFormatter
-    let dateFormatter = DateFormatter.currencyFormatter
     
     init(service: CurrencyService) {
         self.service = service
@@ -91,13 +90,11 @@ class CurrencyViewModel {
     /// 요청이 성공하면 `CurrencyViewDelegate`의 `currencyViewModel(didReceiveCurrency:)`를 호출하고
     /// 실패하면 `currencyViewModel(didReceiveError:)`를 호출한다
     func requestCurrencyRate() {
-        let queries = [
-            "access_key": "bae9d0e6ce4a4b885835497c7fe8f2f2",
-            "source": source,
-            "currencies": destination,
-            "format": "1"
-        ]
-        service.request(queries: queries) { [weak self] result in
+        
+        let queries = CurrencyAPI.queries(source: source, currencies: [destination])
+        let endpoint = CurrencyAPI.endpoint
+        
+        service.request(endpoint: endpoint, queries: queries) { [weak self] result in
             
             guard let self = self else { return }
             
@@ -105,12 +102,11 @@ class CurrencyViewModel {
 
             case .success(let currency):
                 
-                // 예시: USDKRW
-                let rateKey = self.source + self.destination
+                let quote = self.source + self.destination    // USDKRW
                 
-                guard let rate = currency.destinations[rateKey],
+                guard let rate = currency.destinations[quote],
                       let formattedRate = self.numberFormatter.string(from: rate)
-                else { self.delegate?.currencyViewModel(didReceiveError: "ERROR"); return }
+                else { self.delegate?.currencyViewModel(didReceiveError: "오류가 발생했습니다"); return }
                 
                 self.currencyRate = rate
                                 
@@ -119,14 +115,14 @@ class CurrencyViewModel {
                 let time = self.dateFormatter.string(from: currency.timestamp)
                 
                 let result = [
-                    "description": description,
-                    "time": time
+                    "time": time,
+                    "description": description
                 ]
                 
                 self.delegate?.currencyViewModel(didReceiveCurrency: result)
 
             case .failure(_):
-                self.delegate?.currencyViewModel(didReceiveError: "ERROR")
+                self.delegate?.currencyViewModel(didReceiveError: "오류가 발생했습니다")
             }
         }
     }
