@@ -47,7 +47,7 @@ class CurrencyViewController: UIViewController {
         guard let number = textField.text?.asDouble else { return }
         let calculated = viewModel.calculate(number)
         
-        textField.textColor = (calculated == nil) ? Color.text : Color.text
+        textField.textColor = (calculated != nil) ? Color.text : Color.error
     }
 }
 
@@ -118,7 +118,9 @@ extension CurrencyViewController: CurrencyViewModelDelegate {
     }
     
     func currencyViewModel(didReceiveError error: String) {
-        
+        DispatchQueue.main.async {
+            self.rateLabel.text = error
+        }
     }
     
     func currencyViewModel(didCalculate result: String, isSuccessed: Bool) {

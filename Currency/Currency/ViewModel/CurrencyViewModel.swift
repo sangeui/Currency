@@ -66,7 +66,10 @@ class CurrencyViewModel {
     /// - Returns: 계산된 환율
     @discardableResult
     func calculate(_ amount: Double) -> Double? {
-        guard let rate = currencyRate else { return nil }
+        guard let rate = currencyRate else {
+            delegate?.currencyViewModel(didCalculate: "환율 정보를 이용할 수 없습니다", isSuccessed: false)
+            return nil
+        }
         
         guard 0...10000 ~= amount else {
             delegate?.currencyViewModel(didCalculate: "송금액이 바르지 않습니다", isSuccessed: false)
