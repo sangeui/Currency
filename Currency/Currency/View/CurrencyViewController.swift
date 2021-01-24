@@ -9,48 +9,50 @@ import UIKit
 
 class CurrencyViewController: UIViewController {
     
-    @IBOutlet weak var toolbar: UIView!
-    @IBOutlet weak var currencyPickerView: UIPickerView!
+    @IBOutlet weak var textFieldToolbar: UIView!
+    @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var sendToLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var rateLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var amountTextField: UITextField!
+    @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak var textField: UITextField!
     
-    var orderedList: [(key: String, value: String)]!
-    var viewModel: CurrencyViewModel!
+    var currencyList: [(key: String, value: String)]!
+    
+    var viewModel: CurrencyViewModel = {
+        let service = CurrencyService(session: .shared)
+        let viewModel = CurrencyViewModel(service: service)
+        
+        return viewModel
+    } ()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let service = CurrencyService(session: .shared)
-        viewModel = CurrencyViewModel(service: service)
-        
-        currencyPickerView.delegate = self
-        currencyPickerView.dataSource = self
-        
         viewModel.delegate = self
         
-        amountTextField.delegate = self
-        amountTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
-        amountTextField.inputAccessoryView = toolbar
+        textField.inputAccessoryView = textFieldToolbar
     }
 
     @IBAction func closeKeyboard(_ sender: Any) {
-        amountTextField.resignFirstResponder()
+        textField.resignFirstResponder()
     }
     @IBAction func showPickerView(_ sender: Any) {
-        currencyPickerView.isHidden = false
+        pickerView.isHidden = false
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        guard let text = textField.text else { return }
+        guard let number = textField.text?.asDouble else { return }
+        let calculated = viewModel.calculate(number)
         
-        guard let number = Double(text) else { return }
-        
-        viewModel.calculate(number)
+        textField.textColor = (calculated == nil) ? Color.text : Color.text
     }
+}
+
+extension String {
+    var asDouble: Double? { return Double(self) }
 }
 
 extension CurrencyViewController: UIPickerViewDataSource {
@@ -59,24 +61,23 @@ extension CurrencyViewController: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return orderedList.count
+        return currencyList.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return orderedList[row].value
+        return currencyList[row].value
     }
 }
 
 extension CurrencyViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let code = orderedList[row].key
+        let code = currencyList[row].key
         
         viewModel.changeDestination(to: code)
+        viewModel.requestCurrencyRate()
         
         pickerView.isHidden = true
         pickerView.selectRow(0, inComponent: 0, animated: false)
-        
-        viewModel.requestCurrencyRate()
     }
 }
 
@@ -88,24 +89,29 @@ extension CurrencyViewController: UITextFieldDelegate {
 }
 
 extension CurrencyViewController: CurrencyViewModelDelegate {
+    var amountInTextField: Double? {
+        guard let amount = self.textField.text?.asDouble, amount > 0
+        else { return nil }
+        
+        return amount
+    }
     func currencyViewModel(didChangeDestination destination: String, description: String) {
         self.sendToLabel.text = description
-        self.descriptionLabel.text = "송금액을 입력하세요"
+        self.resultLabel.text = "송금액을 입력하세요"
+        self.resultLabel.textColor = Color.text
     }
     
     func currencyViewModel(didChangeCurrencyList list: [String:String]) {
-        orderedList = list.sorted(by: >)
-        currencyPickerView.reloadAllComponents()
+        currencyList = list.sorted(by: >)
+        pickerView.reloadAllComponents()
     }
     
-    func currencyViewModel(didReceiveCurrency currency: [String : String]) {
+    func currencyViewModel(didReceiveCurrency currency: [String:String]) {
         DispatchQueue.main.async {
             self.timeLabel.text = currency["time"]!
             self.rateLabel.text = currency["description"]!
             
-            if let text = self.amountTextField.text,
-               let amount = Double(text),
-               amount > 0 {
+            if let amount = self.amountInTextField {
                 self.viewModel.calculate(amount)
             }
         }
@@ -116,11 +122,7 @@ extension CurrencyViewController: CurrencyViewModelDelegate {
     }
     
     func currencyViewModel(didCalculate result: String, isSuccessed: Bool) {
-        if isSuccessed {
-            descriptionLabel.text = result
-        } else {
-            
-        }
+        resultLabel.text = result
+        resultLabel.textColor = isSuccessed ? Color.text : Color.error
     }
-
 }
