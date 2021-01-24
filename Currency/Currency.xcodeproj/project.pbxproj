@@ -28,6 +28,8 @@
 		4F818DAE25BAAF130058417D /* NumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818DAD25BAAF130058417D /* NumberFormatterTests.swift */; };
 		4F818DB225BAB2360058417D /* NumberFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818DB125BAB2360058417D /* NumberFormatter+.swift */; };
 		4F818DB625BABD780058417D /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F818DB525BABD780058417D /* CurrencyViewModel.swift */; };
+		4FFD62B525BD4D960030894A /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD62B425BD4D960030894A /* Color.swift */; };
+		4FFD62B925BD57600030894A /* CurrencyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FFD62B825BD575F0030894A /* CurrencyAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		4F818DAD25BAAF130058417D /* NumberFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberFormatterTests.swift; sourceTree = "<group>"; };
 		4F818DB125BAB2360058417D /* NumberFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+.swift"; sourceTree = "<group>"; };
 		4F818DB525BABD780058417D /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
+		4FFD62B425BD4D960030894A /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		4FFD62B825BD575F0030894A /* CurrencyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				4F818D4F25B83C9C0058417D /* CurrencyViewController.swift */,
+				4FFD62B425BD4D960030894A /* Color.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 		4F818D6225B83EA20058417D /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				4FFD62B825BD575F0030894A /* CurrencyAPI.swift */,
 				4F818D8F25B861DF0058417D /* CurrencyService.swift */,
 				4F818D9B25B96E4F0058417D /* CurrencyServiceError.swift */,
 			);
@@ -335,11 +341,13 @@
 				4F818D9025B861DF0058417D /* CurrencyService.swift in Sources */,
 				4F818D5025B83C9C0058417D /* CurrencyViewController.swift in Sources */,
 				4F818DA625BAA5790058417D /* DateFormatter+.swift in Sources */,
+				4FFD62B525BD4D960030894A /* Color.swift in Sources */,
 				4F818D9C25B96E500058417D /* CurrencyServiceError.swift in Sources */,
 				4F818D4C25B83C9C0058417D /* AppDelegate.swift in Sources */,
 				4F62A41A25BC8017006266CA /* CurrencyViewModelDelegate.swift in Sources */,
 				4F818DB625BABD780058417D /* CurrencyViewModel.swift in Sources */,
 				4F62A41625BC46D1006266CA /* CurrencyList.swift in Sources */,
+				4FFD62B925BD57600030894A /* CurrencyAPI.swift in Sources */,
 				4F818D4E25B83C9C0058417D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
