@@ -40,6 +40,7 @@ class CurrencyViewController: UIViewController {
         textField.resignFirstResponder()
     }
     @IBAction func showPickerView(_ sender: Any) {
+        textField.resignFirstResponder()
         pickerView.isHidden = false
     }
     
@@ -54,7 +55,7 @@ class CurrencyViewController: UIViewController {
 extension String {
     var asDouble: Double? { return Double(self) }
 }
-
+// MARK: - UIPickerViewDataSource
 extension CurrencyViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -68,7 +69,7 @@ extension CurrencyViewController: UIPickerViewDataSource {
         return currencyList[row].value
     }
 }
-
+// MARK: - UIPickerViewDelegate
 extension CurrencyViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let code = currencyList[row].key
@@ -80,14 +81,18 @@ extension CurrencyViewController: UIPickerViewDelegate {
         pickerView.selectRow(0, inComponent: 0, animated: false)
     }
 }
-
+// MARK: - UITextFieldDelegate
 extension CurrencyViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        pickerView.isHidden = true
+        return true
+    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
 }
-
+// MARK: - CurrencyViewModelDelegate
 extension CurrencyViewController: CurrencyViewModelDelegate {
     var amountInTextField: Double? {
         guard let amount = self.textField.text?.asDouble, amount > 0
