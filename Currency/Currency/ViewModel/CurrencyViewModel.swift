@@ -29,7 +29,7 @@ class CurrencyViewModel {
     
     weak var delegate: CurrencyViewModelDelegate? {
         didSet {
-//            self.requestCurrencyRate()
+            self.requestCurrencyRate()
             delegate?.currencyViewModel(didChangeCurrencyList: list)
         }
     }
